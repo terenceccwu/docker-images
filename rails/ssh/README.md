@@ -12,19 +12,22 @@ services:
   rails:
     image: terenceccwu/ruby:2.7-rails6.0-ssh
     volumes:
-      - rails-src:/home/user/app
+      - rails-src:/srv
     ports:
       - "10022:22"
+    envionment:
+      - SSH_ROOT_PASSWORD=pw
     depends_on:
       - db
   db:
     image: postgres
     volumes:
-      - ./tmp/db:/var/lib/postgresql/data
+      - db-data:/var/lib/postgresql/data
     environment:
       POSTGRES_PASSWORD: password
 volumes:
   rails-src:
+  db-data:
 ```
 
 ### vscode config
@@ -33,7 +36,7 @@ volumes:
 ```
 Host <homename>
     HostName <homename>
-    User user
+    User root
     Port 10022
     StrictHostKeyChecking no
     UserKnownHostsFile /dev/null
