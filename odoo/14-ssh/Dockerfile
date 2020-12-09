@@ -10,6 +10,7 @@ RUN env | egrep "^(PATH|HOSTNAME|ODOO_RC|ODOO_VERSION)=" | awk '{print "export "
 RUN service ssh start
 
 COPY docker-entrypoint.sh /docker-entrypoint.sh
+RUN chmod +x /docker-entrypoint.sh
 
 EXPOSE 22
 

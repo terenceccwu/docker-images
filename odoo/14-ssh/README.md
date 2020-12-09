@@ -9,13 +9,13 @@ docker run -d -p 10022:22 -v $(pwd):/root --name odoo-14-ssh terenceccwu/odoo:14
 ```
 version: "3.3"
 services:
-  rails:
+  app:
     image: terenceccwu/odoo:14-ssh
     ports:
       - "10022:22"
     volumes:
       - ./enterprise:/root/enterprise
-    envionment:
+    environment:
       - SSH_ROOT_PASSWORD=pw
     depends_on:
       - db
