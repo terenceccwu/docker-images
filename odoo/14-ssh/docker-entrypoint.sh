@@ -6,7 +6,7 @@ FILE_INITIALIZED=/etc/docker-initialized
 
 initial_setup() {
     if [ -z "$SSH_ROOT_PASSWORD" ]; then
-        echo >&2 "error: SSH_PASSWORD is not set"
+        echo >&2 "error: SSH_ROOT_PASSWORD is not set"
         exit 1
     fi
 
