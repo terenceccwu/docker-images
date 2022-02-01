@@ -7,7 +7,7 @@ Having a consistent development environment reduces headaches. Developing on doc
 This README documents the instructions to create images with ssh service exposed for development purpose. Sample images are also included in this repo.
 
 ## How to Create New Image with ssh service?
-1. Create a new folder with 
+1. Create a new folder e.g. `/wordpress/5.9.0-apache-ssh`
 1. Copy sample docker-entrypoint.sh
 1. Replace `/usr/local/bin/docker-entrypoint.sh` with entrypoint file of original image. (`"$@"` means redirect all command line arguments to this script. use `exec "$@"` if no parent entrypoint is available.)
 1. Copy sample Dockerfile
@@ -57,7 +57,6 @@ RUN echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
 # ensure variables passed to docker container are also exposed to ssh sessions
 # src: https://github.com/jenkinsci/docker-ssh-agent/blob/master/setup-sshd
 RUN env | egrep "^(PATH|HOSTNAME)=" | awk '{print "export " $0}' > /etc/profile.d/docker-env.sh
-RUN service ssh start
 
 COPY docker-entrypoint.sh /docker-entrypoint.sh
 RUN chmod +x /docker-entrypoint.sh
